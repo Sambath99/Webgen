@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Flex, Text, Input, Button, VStack, Heading, Textarea, useColorModeValue, Container, FormControl, FormLabel, InputGroup, InputRightElement } from "@chakra-ui/react";
-import { FaCog, FaRocket, FaPlay, FaCopy } from "react-icons/fa";
+import { Box, Flex, Text, Input, Button, VStack, Heading, Textarea, useColorModeValue, useColorMode, Container, FormControl, FormLabel, InputGroup, InputRightElement, IconButton } from "@chakra-ui/react";
+import { FaCog, FaRocket, FaPlay, FaCopy, FaMoon, FaSun } from "react-icons/fa";
 
 const Index = () => {
   const [input, setInput] = useState("");
@@ -37,6 +37,8 @@ const Index = () => {
     navigator.clipboard.writeText(output);
   };
 
+  const { colorMode, toggleColorMode } = useColorMode();
+  const isDark = colorMode === "dark";
   const bgColor = useColorModeValue("gray.50", "gray.800");
   const colorScheme = useColorModeValue("purple", "orange");
 
