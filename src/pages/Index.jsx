@@ -45,9 +45,12 @@ const Index = () => {
   return (
     <Container maxW="container.xl" py={10} style={{ background: "linear-gradient(180deg, rgba(135,206,235,1) 0%, rgba(175,238,238,1) 50%, rgba(255,255,255,1) 100%)" }}>
       <VStack spacing={8}>
-        <Heading as="h1" size="2xl" textAlign="center" color={colorScheme}>
-          <FaRocket /> Website Generator <FaCog />
-        </Heading>
+        <Flex justifyContent="center" alignItems="center">
+          <Heading as="h1" size="2xl" textAlign="center" color={colorScheme}>
+            <FaRocket /> Website Generator
+          </Heading>
+          <IconButton aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"} icon={isDark ? <FaSun /> : <FaMoon />} onClick={toggleColorMode} ml={4} colorScheme={colorScheme} />
+        </Flex>
         <Box p={6} bg={bgColor} borderRadius="lg" w="100%" boxShadow="xl">
           <VStack spacing={4}>
             <FormControl id="api-endpoint">
