@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Flex, Text, Input, Button, VStack, Heading, Textarea, useColorModeValue, Container, FormControl, FormLabel, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { FaCog, FaRocket, FaPlay, FaCopy } from "react-icons/fa";
 
@@ -9,7 +9,18 @@ const Index = () => {
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleInputChange = (e) => setInput(e.target.value);
-  const handleApiEndpointChange = (e) => setApiEndpoint(e.target.value);
+  const handleApiEndpointChange = (e) => {
+    const newApiEndpoint = e.target.value;
+    setApiEndpoint(newApiEndpoint);
+    localStorage.setItem("apiEndpoint", newApiEndpoint);
+  };
+
+  useEffect(() => {
+    const savedApiEndpoint = localStorage.getItem("apiEndpoint");
+    if (savedApiEndpoint) {
+      setApiEndpoint(savedApiEndpoint);
+    }
+  }, []);
 
   const generateCode = async () => {
     setIsGenerating(true);
@@ -30,7 +41,7 @@ const Index = () => {
   const colorScheme = useColorModeValue("purple", "orange");
 
   return (
-    <Container maxW="container.xl" py={10}>
+    <Container maxW="container.xl" py={10} style={{ background: "linear-gradient(180deg, rgba(135,206,235,1) 0%, rgba(175,238,238,1) 50%, rgba(255,255,255,1) 100%)" }}>
       <VStack spacing={8}>
         <Heading as="h1" size="2xl" textAlign="center" color={colorScheme}>
           <FaRocket /> Website Generator <FaCog />
